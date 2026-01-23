@@ -157,6 +157,7 @@ stock-predictor/
 - Predictions are for educational purposes only
 - Model accuracy depends on training data and market conditions
 - Not financial advice
+- See `backend/ML_MODEL.md` for full model documentation
 
 ## License
 
