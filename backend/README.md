@@ -82,6 +82,17 @@ SEQUENCE_LENGTH=100
 TWELVE_API_SECRET_KEY=your_twelvedata_api_key
 DATA_DAYS=365
 DATA_INTERVAL=1day
+TRAIN_DAYS=730
+TRAIN_HORIZON=30
+TRAIN_EPOCHS=20
+TRAIN_BATCH_SIZE=64
+TRAIN_MAX_TICKERS=500
+TRAIN_MIN_PRICE=5
+TRAIN_MIN_HISTORY=140
+TRAIN_REQUEST_DELAY=0.2
+TRAIN_SEED=42
+TRAIN_USE_CACHE=false
+TRAIN_CACHE_TTL_DAYS=7
 ```
 
 ---
@@ -107,3 +118,21 @@ netstat -ano | findstr :8000
 - Ensure model file is in `models/` folder
 - Verify TensorFlow 2.14.0 is installed
 - Check file permissions
+
+---
+
+## Training (S&P 500, 2y)
+
+The training script pulls daily closes from Twelve Data and trains a global LSTM for 30-day forecasting.
+
+```bash
+cd backend
+python train_model.py
+```
+
+Notes:
+- Requires `TWELVE_API_SECRET_KEY`
+- Defaults: 2 years (`TRAIN_DAYS=730`), 30-day horizon, 100-step sequence
+- Outputs: `models/lstm_model.keras`, `models/scaler.pkl`, `models/training_metrics.json`
+- Uses per-ticker normalization and quantile regression (0.1/0.5/0.9)
+- Optional cache: set `TRAIN_USE_CACHE=true` to reuse cached time series in `backend/data_cache/`

@@ -6,11 +6,36 @@ import pandas as pd
 from tensorflow import keras
 import pickle
 from sklearn.preprocessing import MinMaxScaler
-from typing import Optional, Protocol
+from typing import Optional, Protocol, Dict, Tuple
 from datetime import datetime
 import os
 
 from data_providers.twelvedata import TwelveDataProvider, TwelveDataError
+
+
+QUANTILES = [0.1, 0.5, 0.9]
+
+
+@keras.utils.register_keras_serializable()
+def quantile_loss(y_true, y_pred):
+    losses = []
+    for q_index, q in enumerate(QUANTILES):
+        errors = y_true - y_pred[:, :, q_index]
+        losses.append(keras.ops.maximum(q * errors, (q - 1) * errors))
+    return keras.ops.mean(keras.ops.add_n(losses))
+
+
+@keras.utils.register_keras_serializable()
+def median_mae(y_true, y_pred):
+    median = y_pred[:, :, 1]
+    return keras.ops.mean(keras.ops.abs(y_true - median))
+
+
+@keras.utils.register_keras_serializable()
+def median_mape(y_true, y_pred):
+    median = y_pred[:, :, 1]
+    denom = keras.ops.maximum(keras.ops.abs(y_true), 1e-6)
+    return keras.ops.mean(keras.ops.abs((y_true - median) / denom)) * 100
 
 
 class StockDataProvider(Protocol):
@@ -37,6 +62,7 @@ class LSTMPredictor:
         self.model = None
         self.scaler = None
         self.data_provider = data_provider or TwelveDataProvider.from_env(days=365, interval="1day")
+        self.scaler_cache: Dict[str, Tuple[MinMaxScaler, int, float]] = {}
         
         # Resolve absolute paths
         if not os.path.isabs(model_path):
@@ -49,7 +75,14 @@ class LSTMPredictor:
         
         # Load model
         if os.path.exists(model_path):
-            self.model = keras.models.load_model(model_path)
+            self.model = keras.models.load_model(
+                model_path,
+                custom_objects={
+                    "quantile_loss": quantile_loss,
+                    "median_mae": median_mae,
+                    "median_mape": median_mape,
+                },
+            )
             print(f"Model loaded from {model_path}")
         else:
             print(f"Warning: Model not found at {model_path}")
@@ -84,7 +117,7 @@ class LSTMPredictor:
         except Exception as e:
             raise Exception(f"Error fetching stock data: {str(e)}")
     
-    def prepare_data(self, data: np.ndarray) -> np.ndarray:
+    def prepare_data(self, data: np.ndarray, ticker: str) -> tuple[np.ndarray, MinMaxScaler]:
         """
         Prepare data for model input
         
@@ -92,14 +125,19 @@ class LSTMPredictor:
             data: Raw price data
             
         Returns:
-            Normalized data
+            Normalized data and scaler
         """
         data = data.reshape(-1, 1)
-        if hasattr(self.scaler, 'data_min_') and hasattr(self.scaler, 'data_max_'):
-            normalized_data = self.scaler.transform(data)
+        last_price = float(data[-1][0])
+        cached = self.scaler_cache.get(ticker)
+        if cached and cached[1] == len(data) and cached[2] == last_price:
+            scaler = cached[0]
+            normalized_data = scaler.transform(data)
         else:
-            normalized_data = self.scaler.fit_transform(data)
-        return normalized_data
+            scaler = MinMaxScaler(feature_range=(0, 1))
+            normalized_data = scaler.fit_transform(data)
+            self.scaler_cache[ticker] = (scaler, len(data), last_price)
+        return normalized_data, scaler
     
     def create_sequences(self, data: np.ndarray) -> np.ndarray:
         """
@@ -143,8 +181,8 @@ class LSTMPredictor:
             if len(close_prices) < self.sequence_length:
                 raise Exception(f"Insufficient data: need at least {self.sequence_length} days of data, got {len(close_prices)}")
             
-            # Prepare data
-            normalized_data = self.prepare_data(close_prices)
+            # Prepare data (per-ticker normalization)
+            normalized_data, local_scaler = self.prepare_data(close_prices, ticker)
             
             # Get last sequence
             last_sequence = normalized_data[-self.sequence_length:].reshape(1, self.sequence_length, 1)
@@ -155,9 +193,9 @@ class LSTMPredictor:
             
             for _ in range(days_ahead):
                 pred = self.model.predict(current_sequence, verbose=0)
-                # Extract scalar value from numpy array
-                if isinstance(pred[0, 0], np.ndarray):
-                    pred_value = float(pred[0, 0].item())
+                # Extract median prediction if quantiles are present
+                if pred.ndim == 3 and pred.shape[-1] >= 3:
+                    pred_value = float(pred[0, 0, 1])
                 else:
                     pred_value = float(pred[0, 0])
                 predictions.append(pred_value)
@@ -168,7 +206,7 @@ class LSTMPredictor:
             
             # Inverse transform predictions
             predictions_array = np.array(predictions).reshape(-1, 1)
-            denormalized_predictions = self.scaler.inverse_transform(predictions_array)
+            denormalized_predictions = local_scaler.inverse_transform(predictions_array)
             
             # Get current and recent prices - ensure proper conversion to Python scalars
             current_price_val = close_prices[-1]
@@ -190,6 +228,9 @@ class LSTMPredictor:
                 predicted_price = float(pred_price_val.item())
             else:
                 predicted_price = float(pred_price_val)
+
+            if predicted_price <= 0 or not np.isfinite(predicted_price):
+                raise Exception("Model returned invalid predicted price.")
             
             # Extract all predictions as Python floats
             predictions_list = []
@@ -199,7 +240,15 @@ class LSTMPredictor:
                     predictions_list.append(float(val.item()))
                 else:
                     predictions_list.append(float(val))
+
+            if any(not np.isfinite(v) for v in predictions_list):
+                raise Exception("Model returned invalid prediction values.")
             
+            price_change = float(predicted_price - current_price)
+            price_change_percent = float((price_change / current_price) * 100)
+            if not np.isfinite(price_change_percent) or abs(price_change_percent) > 200:
+                raise Exception("Prediction change is unrealistically large.")
+
             return {
                 "ticker": ticker,
                 "current_price": current_price,
@@ -207,8 +256,8 @@ class LSTMPredictor:
                 "predictions": predictions_list,
                 "days_ahead": days_ahead,
                 "recent_prices": recent_prices,
-                "price_change": float(predicted_price - current_price),
-                "price_change_percent": float(((predicted_price - current_price) / current_price) * 100),
+                "price_change": price_change,
+                "price_change_percent": price_change_percent,
                 "timestamp": datetime.now().isoformat()
             }
         except Exception as e:

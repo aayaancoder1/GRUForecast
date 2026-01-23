@@ -1,0 +1,904 @@
+{
+  "train_loss": 0.07527223974466324,
+  "train_mae": 0.07788626849651337,
+  "train_mape": 17226.435546875,
+  "val_loss": 0.06915322691202164,
+  "val_mae": 0.07127470523118973,
+  "val_mape": 14935.017578125,
+  "val_mae_usd": 7.913000712168243,
+  "val_mape_percent": 4.572998971543743,
+  "val_smape_percent": 4.526760769853234,
+  "predicted_range": {
+    "min": 0.011553749442100525,
+    "max": 1.0597141981124878
+  },
+  "input_range": {
+    "min": 0.0,
+    "max": 1.0000000000000002
+  },
+  "sequence_length": 100,
+  "horizon": 30,
+  "days": 730,
+  "num_samples": 15025,
+  "skipped_tickers": [
+    "ADM",
+    "ADP",
+    "ADSK",
+    "AEE",
+    "AEP",
+    "AES",
+    "AFL",
+    "AIG",
+    "AIZ",
+    "AJG",
+    "AKAM",
+    "ALB",
+    "ALGN",
+    "ALL",
+    "ALLE",
+    "AMAT",
+    "AMCR",
+    "AMD",
+    "AME",
+    "AMGN",
+    "AMP",
+    "AMT",
+    "AMZN",
+    "ANET",
+    "AON",
+    "AOS",
+    "APA",
+    "APD",
+    "APH",
+    "APO",
+    "APTV",
+    "ARE",
+    "ATO",
+    "AVB",
+    "AVGO",
+    "AVY",
+    "AWK",
+    "AXON",
+    "AXP",
+    "AZO",
+    "BA",
+    "BAC",
+    "BALL",
+    "BAX",
+    "BBY",
+    "BDX",
+    "BEN",
+    "BF.B",
+    "BG",
+    "BIIB",
+    "BK",
+    "BKNG",
+    "BKR",
+    "BLDR",
+    "BLK",
+    "BMY",
+    "CAH",
+    "CARR",
+    "CAT",
+    "CB",
+    "CBOE",
+    "CBRE",
+    "CCI",
+    "CCL",
+    "CDNS",
+    "CDW",
+    "CEG",
+    "CF",
+    "CFG",
+    "CHD",
+    "CHRW",
+    "CHTR",
+    "CI",
+    "CINF",
+    "CL",
+    "CLX",
+    "CMCSA",
+    "CME",
+    "CMG",
+    "CMI",
+    "CMS",
+    "CNC",
+    "CNP",
+    "COF",
+    "COIN",
+    "COO",
+    "COP",
+    "COR",
+    "COST",
+    "CPAY",
+    "CPB",
+    "CPRT",
+    "CPT",
+    "CRL",
+    "CRM",
+    "CRWD",
+    "CSCO",
+    "CSGP",
+    "CSX",
+    "CTAS",
+    "CTRA",
+    "CTSH",
+    "CTVA",
+    "CVS",
+    "CVX",
+    "CZR",
+    "D",
+    "DAL",
+    "DASH",
+    "DAY",
+    "DD",
+    "DDOG",
+    "DE",
+    "DECK",
+    "DELL",
+    "DG",
+    "DGX",
+    "DHI",
+    "DHR",
+    "DIS",
+    "DLR",
+    "DLTR",
+    "DOC",
+    "DOV",
+    "DOW",
+    "DPZ",
+    "DRI",
+    "DTE",
+    "DUK",
+    "DVA",
+    "DVN",
+    "DXCM",
+    "EA",
+    "EBAY",
+    "EMR",
+    "ENPH",
+    "EOG",
+    "EPAM",
+    "EQIX",
+    "EQR",
+    "EQT",
+    "ERIE",
+    "ES",
+    "ESS",
+    "ETN",
+    "ETR",
+    "EVRG",
+    "EW",
+    "EXC",
+    "EXE",
+    "EXPD",
+    "EXPE",
+    "EXR",
+    "F",
+    "FANG",
+    "FAST",
+    "FCX",
+    "FDS",
+    "FDX",
+    "FE",
+    "FFIV",
+    "FI",
+    "FICO",
+    "FIS",
+    "FITB",
+    "FOX",
+    "FOXA",
+    "FRT",
+    "FSLR",
+    "FTNT",
+    "FTV",
+    "GD",
+    "GDDY",
+    "GE",
+    "GEHC"
+  ],
+  "skipped_low_price": [],
+  "skipped_short_history": [],
+  "failed_tickers": [
+    {
+      "ticker": "ADM",
+      "error": "You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ADP",
+      "error": "You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ADSK",
+      "error": "You have run out of API credits for the current minute. 11 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AEE",
+      "error": "You have run out of API credits for the current minute. 12 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AEP",
+      "error": "You have run out of API credits for the current minute. 13 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AES",
+      "error": "You have run out of API credits for the current minute. 14 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AFL",
+      "error": "You have run out of API credits for the current minute. 15 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AIG",
+      "error": "You have run out of API credits for the current minute. 16 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AIZ",
+      "error": "You have run out of API credits for the current minute. 17 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AJG",
+      "error": "You have run out of API credits for the current minute. 18 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AKAM",
+      "error": "You have run out of API credits for the current minute. 19 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ALB",
+      "error": "You have run out of API credits for the current minute. 20 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ALGN",
+      "error": "You have run out of API credits for the current minute. 21 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ALL",
+      "error": "You have run out of API credits for the current minute. 22 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ALLE",
+      "error": "You have run out of API credits for the current minute. 23 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMAT",
+      "error": "You have run out of API credits for the current minute. 24 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMCR",
+      "error": "You have run out of API credits for the current minute. 25 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMD",
+      "error": "You have run out of API credits for the current minute. 26 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AME",
+      "error": "You have run out of API credits for the current minute. 27 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMGN",
+      "error": "You have run out of API credits for the current minute. 28 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMP",
+      "error": "You have run out of API credits for the current minute. 29 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMT",
+      "error": "You have run out of API credits for the current minute. 30 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AMZN",
+      "error": "You have run out of API credits for the current minute. 31 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ANET",
+      "error": "You have run out of API credits for the current minute. 32 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AON",
+      "error": "You have run out of API credits for the current minute. 33 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AOS",
+      "error": "You have run out of API credits for the current minute. 34 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "APA",
+      "error": "You have run out of API credits for the current minute. 35 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "APD",
+      "error": "You have run out of API credits for the current minute. 36 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "APH",
+      "error": "You have run out of API credits for the current minute. 37 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "APO",
+      "error": "You have run out of API credits for the current minute. 38 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "APTV",
+      "error": "You have run out of API credits for the current minute. 39 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ARE",
+      "error": "You have run out of API credits for the current minute. 40 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ATO",
+      "error": "You have run out of API credits for the current minute. 41 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AVB",
+      "error": "You have run out of API credits for the current minute. 42 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AVGO",
+      "error": "You have run out of API credits for the current minute. 43 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AVY",
+      "error": "You have run out of API credits for the current minute. 44 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AWK",
+      "error": "You have run out of API credits for the current minute. 45 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AXON",
+      "error": "You have run out of API credits for the current minute. 46 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AXP",
+      "error": "You have run out of API credits for the current minute. 47 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "AZO",
+      "error": "You have run out of API credits for the current minute. 48 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BA",
+      "error": "You have run out of API credits for the current minute. 49 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BAC",
+      "error": "You have run out of API credits for the current minute. 50 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BALL",
+      "error": "You have run out of API credits for the current minute. 51 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BAX",
+      "error": "You have run out of API credits for the current minute. 52 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BBY",
+      "error": "You have run out of API credits for the current minute. 53 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BDX",
+      "error": "You have run out of API credits for the current minute. 54 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BEN",
+      "error": "You have run out of API credits for the current minute. 55 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BF.B",
+      "error": "You have run out of API credits for the current minute. 56 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BG",
+      "error": "You have run out of API credits for the current minute. 57 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BIIB",
+      "error": "You have run out of API credits for the current minute. 58 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BK",
+      "error": "You have run out of API credits for the current minute. 59 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BKNG",
+      "error": "You have run out of API credits for the current minute. 60 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BKR",
+      "error": "You have run out of API credits for the current minute. 61 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BLDR",
+      "error": "You have run out of API credits for the current minute. 62 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BLK",
+      "error": "You have run out of API credits for the current minute. 63 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "BMY",
+      "error": "You have run out of API credits for the current minute. 64 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CAH",
+      "error": "You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CARR",
+      "error": "You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CAT",
+      "error": "You have run out of API credits for the current minute. 11 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CB",
+      "error": "You have run out of API credits for the current minute. 12 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CBOE",
+      "error": "You have run out of API credits for the current minute. 13 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CBRE",
+      "error": "You have run out of API credits for the current minute. 14 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CCI",
+      "error": "You have run out of API credits for the current minute. 15 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CCL",
+      "error": "You have run out of API credits for the current minute. 16 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CDNS",
+      "error": "You have run out of API credits for the current minute. 17 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CDW",
+      "error": "You have run out of API credits for the current minute. 18 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CEG",
+      "error": "You have run out of API credits for the current minute. 19 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CF",
+      "error": "You have run out of API credits for the current minute. 20 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CFG",
+      "error": "You have run out of API credits for the current minute. 21 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CHD",
+      "error": "You have run out of API credits for the current minute. 22 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CHRW",
+      "error": "You have run out of API credits for the current minute. 23 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CHTR",
+      "error": "You have run out of API credits for the current minute. 24 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CI",
+      "error": "You have run out of API credits for the current minute. 25 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CINF",
+      "error": "You have run out of API credits for the current minute. 26 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CL",
+      "error": "You have run out of API credits for the current minute. 27 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CLX",
+      "error": "You have run out of API credits for the current minute. 28 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CMCSA",
+      "error": "You have run out of API credits for the current minute. 29 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CME",
+      "error": "You have run out of API credits for the current minute. 30 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CMG",
+      "error": "You have run out of API credits for the current minute. 31 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CMI",
+      "error": "You have run out of API credits for the current minute. 32 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CMS",
+      "error": "You have run out of API credits for the current minute. 33 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CNC",
+      "error": "You have run out of API credits for the current minute. 34 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CNP",
+      "error": "You have run out of API credits for the current minute. 35 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "COF",
+      "error": "You have run out of API credits for the current minute. 36 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "COIN",
+      "error": "You have run out of API credits for the current minute. 37 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "COO",
+      "error": "You have run out of API credits for the current minute. 38 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "COP",
+      "error": "You have run out of API credits for the current minute. 39 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "COR",
+      "error": "You have run out of API credits for the current minute. 40 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "COST",
+      "error": "You have run out of API credits for the current minute. 41 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CPAY",
+      "error": "You have run out of API credits for the current minute. 42 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CPB",
+      "error": "You have run out of API credits for the current minute. 43 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CPRT",
+      "error": "You have run out of API credits for the current minute. 44 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CPT",
+      "error": "You have run out of API credits for the current minute. 45 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CRL",
+      "error": "You have run out of API credits for the current minute. 46 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CRM",
+      "error": "You have run out of API credits for the current minute. 47 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CRWD",
+      "error": "You have run out of API credits for the current minute. 48 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CSCO",
+      "error": "You have run out of API credits for the current minute. 49 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CSGP",
+      "error": "You have run out of API credits for the current minute. 50 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CSX",
+      "error": "You have run out of API credits for the current minute. 51 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CTAS",
+      "error": "You have run out of API credits for the current minute. 52 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CTRA",
+      "error": "You have run out of API credits for the current minute. 53 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CTSH",
+      "error": "You have run out of API credits for the current minute. 54 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CTVA",
+      "error": "You have run out of API credits for the current minute. 55 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CVS",
+      "error": "You have run out of API credits for the current minute. 56 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CVX",
+      "error": "You have run out of API credits for the current minute. 57 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "CZR",
+      "error": "You have run out of API credits for the current minute. 58 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "D",
+      "error": "You have run out of API credits for the current minute. 59 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DAL",
+      "error": "You have run out of API credits for the current minute. 60 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DASH",
+      "error": "You have run out of API credits for the current minute. 61 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DAY",
+      "error": "You have run out of API credits for the current minute. 62 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DD",
+      "error": "You have run out of API credits for the current minute. 63 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DDOG",
+      "error": "You have run out of API credits for the current minute. 64 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DE",
+      "error": "You have run out of API credits for the current minute. 65 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DECK",
+      "error": "You have run out of API credits for the current minute. 66 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DELL",
+      "error": "You have run out of API credits for the current minute. 67 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DG",
+      "error": "You have run out of API credits for the current minute. 68 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DGX",
+      "error": "You have run out of API credits for the current minute. 69 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DHI",
+      "error": "You have run out of API credits for the current minute. 70 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DHR",
+      "error": "You have run out of API credits for the current minute. 71 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DIS",
+      "error": "You have run out of API credits for the current minute. 72 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DLR",
+      "error": "You have run out of API credits for the current minute. 73 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DLTR",
+      "error": "You have run out of API credits for the current minute. 74 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DOC",
+      "error": "You have run out of API credits for the current minute. 75 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DOV",
+      "error": "You have run out of API credits for the current minute. 76 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DOW",
+      "error": "You have run out of API credits for the current minute. 77 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DPZ",
+      "error": "You have run out of API credits for the current minute. 78 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DRI",
+      "error": "You have run out of API credits for the current minute. 79 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DTE",
+      "error": "You have run out of API credits for the current minute. 80 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DUK",
+      "error": "You have run out of API credits for the current minute. 81 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DVA",
+      "error": "You have run out of API credits for the current minute. 82 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DVN",
+      "error": "You have run out of API credits for the current minute. 83 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "DXCM",
+      "error": "You have run out of API credits for the current minute. 84 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EA",
+      "error": "You have run out of API credits for the current minute. 85 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EBAY",
+      "error": "You have run out of API credits for the current minute. 86 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EMR",
+      "error": "You have run out of API credits for the current minute. 9 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ENPH",
+      "error": "You have run out of API credits for the current minute. 10 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EOG",
+      "error": "You have run out of API credits for the current minute. 11 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EPAM",
+      "error": "You have run out of API credits for the current minute. 12 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EQIX",
+      "error": "You have run out of API credits for the current minute. 13 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EQR",
+      "error": "You have run out of API credits for the current minute. 14 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EQT",
+      "error": "You have run out of API credits for the current minute. 15 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ERIE",
+      "error": "You have run out of API credits for the current minute. 16 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ES",
+      "error": "You have run out of API credits for the current minute. 17 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ESS",
+      "error": "You have run out of API credits for the current minute. 18 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ETN",
+      "error": "You have run out of API credits for the current minute. 19 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "ETR",
+      "error": "You have run out of API credits for the current minute. 20 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EVRG",
+      "error": "You have run out of API credits for the current minute. 21 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EW",
+      "error": "You have run out of API credits for the current minute. 22 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EXC",
+      "error": "You have run out of API credits for the current minute. 23 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EXE",
+      "error": "You have run out of API credits for the current minute. 24 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EXPD",
+      "error": "You have run out of API credits for the current minute. 25 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EXPE",
+      "error": "You have run out of API credits for the current minute. 26 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "EXR",
+      "error": "You have run out of API credits for the current minute. 27 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "F",
+      "error": "You have run out of API credits for the current minute. 28 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FANG",
+      "error": "You have run out of API credits for the current minute. 29 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FAST",
+      "error": "You have run out of API credits for the current minute. 30 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FCX",
+      "error": "You have run out of API credits for the current minute. 31 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FDS",
+      "error": "You have run out of API credits for the current minute. 32 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FDX",
+      "error": "You have run out of API credits for the current minute. 33 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FE",
+      "error": "You have run out of API credits for the current minute. 34 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FFIV",
+      "error": "You have run out of API credits for the current minute. 35 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FI",
+      "error": "You have run out of API credits for the current minute. 36 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FICO",
+      "error": "You have run out of API credits for the current minute. 37 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FIS",
+      "error": "You have run out of API credits for the current minute. 38 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FITB",
+      "error": "You have run out of API credits for the current minute. 39 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FOX",
+      "error": "You have run out of API credits for the current minute. 40 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FOXA",
+      "error": "You have run out of API credits for the current minute. 41 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FRT",
+      "error": "You have run out of API credits for the current minute. 42 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FSLR",
+      "error": "You have run out of API credits for the current minute. 43 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FTNT",
+      "error": "You have run out of API credits for the current minute. 44 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "FTV",
+      "error": "You have run out of API credits for the current minute. 45 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "GD",
+      "error": "You have run out of API credits for the current minute. 46 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "GDDY",
+      "error": "You have run out of API credits for the current minute. 47 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "GE",
+      "error": "You have run out of API credits for the current minute. 48 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    },
+    {
+      "ticker": "GEHC",
+      "error": "You have run out of API credits for the current minute. 49 API credits were used, with the current limit being 8. Wait for the next minute or consider switching to a higher tier plan at https://twelvedata.com/pricing"
+    }
+  ]
+}
