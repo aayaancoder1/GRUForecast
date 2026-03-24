@@ -1,19 +1,14 @@
+---
+
 # GRUForecast
 
+[![Backend](https://img.shields.io/badge/Backend-Hugging%20Face%20Spaces-yellow?logo=huggingface)](https://huggingface.co/spaces/YOUR_HF_USERNAME/gruforecast-backend)
+[![Frontend](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://your-vercel-url.vercel.app)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fyzanshaik/GRUForecast/blob/main/Stock_Predictor_Colab.ipynb)
 
-A full-stack web application for predicting stock prices using **GRU + Multi-Head Attention** neural networks with quantile regression for uncertainty estimation.
+A full-stack web application for predicting stock prices using GRU + Multi-Head Attention neural networks with quantile regression for uncertainty estimation.
 
 ## Model Architecture
-
-```mermaid
-flowchart LR
-    A[100 Days<br/>History] --> B[GRU<br/>64 units]
-    B --> C[Multi-Head<br/>Attention]
-    C --> D[GRU<br/>64 units]
-    D --> E[30-Day<br/>Forecast]
-    E --> F[Uncertainty<br/>Bands]
-```
 
 **Key Features:**
 - **GRU + Attention**: Captures temporal patterns and focuses on relevant time steps
@@ -21,19 +16,11 @@ flowchart LR
 - **Per-Ticker Normalization**: Handles stocks with vastly different price ranges
 - **30-Day Horizon**: Forecasts up to 30 days ahead with confidence bands
 
-> See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed model documentation with diagrams and examples.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed model documentation.
 
 ## Try it Now
 
-Run the complete training and prediction pipeline in Google Colab (no setup required):
-
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fyzanshaik/GRUForecast/blob/main/Stock_Predictor_Colab.ipynb)
-
-The notebook includes:
-- Data collection from 50 S&P 500 stocks
-- Interactive visualizations
-- Model training with GPU acceleration
-- Multi-stock predictions with confidence bands
 
 ## Features
 
@@ -45,23 +32,15 @@ The notebook includes:
 
 ## Tech Stack
 
-### Frontend
-- React 18
-- Recharts for data visualization
-- Tailwind CSS for styling
-- Axios for API calls
+**Frontend** — React 18, Recharts, Tailwind CSS, Axios
 
-### Backend
-- FastAPI
-- TensorFlow/Keras for the GRU model
-- Twelve Data API for stock data
-- NumPy, Pandas for data processing
+**Backend** — FastAPI, TensorFlow/Keras, Twelve Data API, NumPy, Pandas
 
-### Model
-- GRU (Gated Recurrent Unit) layers
-- Multi-Head Self-Attention
-- Quantile Loss (Pinball Loss)
-- Per-ticker MinMax normalization
+**Model** — GRU layers, Multi-Head Self-Attention, Quantile Loss, Per-ticker MinMax normalization
+
+**Hosting** — Vercel (frontend), Hugging Face Spaces (backend)
+
+---
 
 ## Setup Instructions
 
@@ -69,91 +48,137 @@ The notebook includes:
 - Python 3.12+
 - Node.js 14+
 - npm or yarn
+- [Twelve Data API key](https://twelvedata.com) (free tier works)
 
-### Backend Setup
+### Backend — Local Development
 
-1. Navigate to backend directory:
 ```bash
 cd backend
-```
-
-2. Create virtual environment:
-```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
 
-3. Install dependencies:
-```bash
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+
 pip install -r requirements.txt
 ```
 
-4. Add Twelve Data API key:
-   - Create `backend/.env` and set `TWELVE_API_SECRET_KEY`
+Copy the example env file and fill in your API key:
 
-5. Ensure model file exists:
-   - Place your trained `lstm_model.keras` file in `backend/models/` directory
-   - Or train a new model using the Colab notebook
+```bash
+cp .env.example .env
+# Edit .env and add your TWELVE_API_SECRET_KEY
+```
 
-6. Run the server:
+Then run:
+
 ```bash
 python main.py
 ```
 
 Backend runs on: http://localhost:8000
 
-### Frontend Setup
+### Frontend — Local Development
 
-1. Navigate to frontend directory:
 ```bash
 cd frontend
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start development server:
-```bash
 npm start
 ```
 
 Frontend runs on: http://localhost:3000
 
-## API Endpoints
+---
 
-### POST `/api/predict`
-Predict stock price for a given ticker.
+## Deployment
 
-**Request:**
-```json
-{
-  "ticker": "AAPL",
-  "days_ahead": 5
-}
+### Backend — Hugging Face Spaces
+
+The backend is hosted as a Docker Space on Hugging Face. This handles the full TensorFlow stack for free with no cold-start spin-down.
+
+**Steps to deploy your own instance:**
+
+1. Create a new Space at [huggingface.co/new-space](https://huggingface.co/new-space)
+   - SDK: **Docker**
+   - Visibility: **Public**
+
+2. Clone the Space repo:
+   ```bash
+   git clone https://huggingface.co/spaces/YOUR_HF_USERNAME/gruforecast-backend
+   ```
+
+3. Copy backend files into the Space:
+   ```bash
+   cp -r backend/* gruforecast-backend/
+   ```
+
+4. Upload `lstm_model.keras` via the Space's **Files** tab under `models/lstm_model.keras`
+
+5. Add your API key under **Settings → Variables and secrets**:
+   - `TWELVE_API_SECRET_KEY` = your Twelve Data key
+
+6. Push to deploy:
+   ```bash
+   cd gruforecast-backend
+   git add .
+   git commit -m "deploy backend"
+   git push
+   ```
+
+The Space URL will be: `https://YOUR_HF_USERNAME-gruforecast-backend.hf.space`
+
+### Frontend — Vercel
+
+Set the backend URL in your Vercel project's **Environment Variables**:
+
+```
+REACT_APP_API_URL=https://YOUR_HF_USERNAME-gruforecast-backend.hf.space
 ```
 
-**Response:**
+Or if the frontend uses Vite:
+
+```
+VITE_API_URL=https://YOUR_HF_USERNAME-gruforecast-backend.hf.space
+```
+
+---
+
+## API Reference
+
+### `POST /api/predict`
+
 ```json
+// Request
+{ "ticker": "AAPL", "days_ahead": 5 }
+
+// Response
 {
   "ticker": "AAPL",
   "current_price": 247.65,
   "predicted_price": 257.22,
-  "predictions": [257.22, 255.76, ...],
+  "predictions": [257.22, 255.76, "..."],
   "days_ahead": 5,
-  "recent_prices": [...],
+  "recent_prices": ["..."],
   "price_change": 9.57,
   "price_change_percent": 3.86,
   "timestamp": "2024-01-22T10:30:00"
 }
 ```
 
-### GET `/api/model-info`
-Get model architecture and details.
+### `GET /api/predict?ticker=AAPL&days_ahead=5`
 
-### GET `/health`
-Health check endpoint.
+Same response, quick GET version.
+
+### `GET /api/model-info`
+
+Returns model architecture and layer details.
+
+### `GET /health`
+
+Returns `{ "status": "healthy" }`.
+
+---
 
 ## Project Structure
 
@@ -162,6 +187,8 @@ GRUForecast/
 ├── backend/
 │   ├── main.py                    # FastAPI application
 │   ├── train_model.py             # Training script
+│   ├── Dockerfile                 # Docker config for HF Spaces
+│   ├── .env.example               # Environment variable template
 │   ├── models/
 │   │   ├── lstm_model.keras       # Trained model
 │   │   ├── lstm_predictor.py      # Prediction logic
@@ -169,7 +196,6 @@ GRUForecast/
 │   ├── data_providers/
 │   │   ├── twelvedata.py          # Twelve Data API client
 │   │   └── ticker_universe.py     # S&P 500 tickers
-│   ├── data_cache/                # Cached stock data
 │   ├── routes/
 │   │   ├── prediction.py          # Prediction endpoints
 │   │   └── model_info.py          # Model info endpoints
@@ -193,36 +219,12 @@ GRUForecast/
 | Validation SMAPE | ~4.53% |
 | Training Samples | 15,000+ |
 
-## Usage
-
-1. Start both backend and frontend servers
-2. Open http://localhost:3000 in your browser
-3. Enter a stock ticker symbol (e.g., AAPL, MSFT, TCS.NS)
-4. Select the number of days to forecast (1-30)
-5. Click "Forecast" to get predictions with confidence bands
-
-## Supported Stock Exchanges
-
-- US Stocks: AAPL, GOOGL, MSFT, TSLA, etc.
-- Indian Stocks: TCS.NS, RELIANCE.NS, INFY.NS, etc.
-- Cryptocurrencies: BTC-USD, ETH-USD
-
-## Documentation
-
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Detailed model architecture with diagrams
-- [backend/ML_MODEL.md](backend/ML_MODEL.md) - Training pipeline documentation
-
 ## Notes
 
-- Predictions are for **educational purposes only**
-- Model accuracy depends on training data and market conditions
-- **Not financial advice**
+- Predictions are for educational purposes only
+- Not financial advice
 - Uncertainty bands represent 80% confidence interval
 
 ## License
 
 MIT
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
