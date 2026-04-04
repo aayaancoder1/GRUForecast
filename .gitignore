@@ -62,6 +62,7 @@ build/
 *.keras
 backend/models/lstm_model.keras
 backend/models/*.keras
+!backend/models/lstm_model_single.keras
 
 # Temporary files
 *.tmp
