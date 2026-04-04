@@ -3,8 +3,8 @@ LSTM Model predictor module
 """
 import numpy as np
 import pandas as pd
+import keras
 import tensorflow as tf
-from tensorflow import keras
 import pickle
 import json
 from sklearn.preprocessing import MinMaxScaler
@@ -68,32 +68,16 @@ class LSTMPredictor:
             scaler_path = os.path.join(base_dir, scaler_path.lstrip('./'))
 
         if os.path.exists(model_path):
-            weights_path = os.path.join(model_path, "model_weights.h5")
-            config_path = os.path.join(model_path, "config.json")
-            if os.path.isdir(model_path) and os.path.exists(weights_path) and os.path.exists(config_path):
-                print(f"Loading Keras 3 directory format model from {model_path}")
-                with open(config_path, "r") as f:
-                    config = json.load(f)
-                self.model = tf.keras.models.model_from_json(
-                    json.dumps(config),
-                    custom_objects={
-                        "quantile_loss": quantile_loss,
-                        "median_mae": median_mae,
-                        "median_mape": median_mape,
-                    },
-                )
-                self.model.load_weights(weights_path)
-                print(f"Model loaded successfully from {model_path}")
-            else:
-                self.model = tf.keras.models.load_model(
-                    model_path,
-                    custom_objects={
-                        "quantile_loss": quantile_loss,
-                        "median_mae": median_mae,
-                        "median_mape": median_mape,
-                    },
-                )
-                print(f"Model loaded from {model_path}")
+            print(f"Loading model from {model_path}")
+            self.model = keras.models.load_model(
+                model_path,
+                custom_objects={
+                    "quantile_loss": quantile_loss,
+                    "median_mae": median_mae,
+                    "median_mape": median_mape,
+                },
+            )
+            print(f"Model loaded successfully")
         else:
             print(f"Warning: Model not found at {model_path}")
 
